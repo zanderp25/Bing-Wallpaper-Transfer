@@ -1,4 +1,0 @@
-([('Bing Wallpaper Transfer',
-   '/Users/zanderp25/Desktop/Bing Wallpaper Transfer/dist/Bing Wallpaper '
-   'Transfer',
-   'EXECUTABLE')],)
