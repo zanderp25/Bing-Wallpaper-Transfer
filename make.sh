@@ -13,4 +13,10 @@ cp icon-assets/Icon-MacOS-512x512@2x.png icon.iconset/icon_512x512@2x.png
 iconutil -c icns icon.iconset
 rm -R icon.iconset
 # Build the app
-pyinstaller -w -F --name "Bing Wallpaper Transfer" -i icon.icns main.py --noconfirm
+pyinstaller \
+    -w -F \
+    --name "Bing Wallpaper Transfer" \
+    -i icon.icns \
+    --target-arch universal2 \
+    --osx-bundle-identifier "com.zanderp25.BingWallpaperTransfer" \
+    main.py --noconfirm

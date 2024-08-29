@@ -117,9 +117,14 @@ class App(Tk):
 
     def refresh(self):
         self.file_list.delete(*self.file_list.get_children())
+        files = []
         for file in os.listdir(self.src.get()):
             if re.match(r'^BingWallpaper.*\.jpg$', file):
-                self.file_list.insert('', 'end', values=(file, get_file_size(os.path.join(self.src.get(), file))))
+                files.append({'file': file, 'size': get_file_size(os.path.join(self.src.get(), file))})
+        # sort files by number: BingWallpaper.jpg, BingWallpaper (1).jpg, BingWallpaper (2).jpg, ...
+        files.sort(key=lambda x: int(re.search(r'\d+', x['file']).group()) if re.search(r'\d+', x['file']) else 0)
+        for file in files:
+            self.file_list.insert('', 'end', values=(file['file'], file['size']))
 
     def update_src(self):
         self.refresh()
